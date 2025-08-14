@@ -25,132 +25,94 @@ A **Python-based hands-free mouse control system** that uses **computer vision**
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python **3.7 or higher**
+- Python **3.7 or higher(used 3.11.9)**
 - A working **webcam**
 - Good, consistent **lighting conditions**
 
 ### Installation
 
 1. **Clone the repository**
-   ```bash
    git clone https://github.com/mahamudul-hasan-cse/head-tracking-blink-detection.git
    cd head-tracking-blink-detection
-2. Install dependencies
+   
+3. Install dependencies
+
 pip install -r requirements.txt
-3. Run the main application
+
+4. Run the main application
+
 python MonitorTracking.py
 
-⚙️ Configuration
-Head Tracking Sensitivity
-yawDegrees = 20    # Degrees left/right to reach screen edges
-pitchDegrees = 10  # Degrees up/down to reach screen edges
-
-Blink Detection Settings
-EYE_AR_THRESH = 0.21          # Blink sensitivity
-EYE_AR_CONSEC_FRAMES = 2      # Frames eyes must be closed to trigger click
-blink_cooldown = 0.5          # Seconds between clicks
-📸 Screenshots
+**📸Screenshots**
 Here are
 F7: Toggle mouse control
 F8: Toggle blink Detection
 C: Calibrate
 Q: Quit
 <img width="1287" height="512" alt="Screenshot_3" src="https://github.com/user-attachments/assets/405b889c-a5da-4e22-a2e3-be7d3bd081e6" />
+
 📁 Project Structure
-head-tracking-blink-detection/
-├── MonitorTracking.py           # Main application
-├── test_blink_detection.py      # Blink detection test
-├── CursorCircle.py               # Visual cursor overlay
-├── test_camera.py                # Camera test utility
-├── run_head_tracking.bat         # Batch file runner
-├── run_head_tracking.ps1         # PowerShell runner
-├── run_head_tracking_improved.bat# Improved batch file runner
-├── stop_head_tracking.bat        # Stop script
-├── run_project.py                 # Alternative Python runner
-├── run_project_improved.py        # Improved Python runner
-├── BLINK_DETECTION_README.md     # Detailed blink detection guide
-├── requirements.txt              # Python dependencies
-├── README.md                     # Main documentation
-├── LICENSE                       # MIT License
-└── .gitignore                    # Ignore unnecessary files
+| File/Folder                      | Description                    |
+| -------------------------------- | ------------------------------ |
+| `MonitorTracking.py`             | Main application               |
+| `test_blink_detection.py`        | Blink detection test utility   |
+| `CursorCircle.py`                | Visual cursor overlay          |
+| `test_camera.py`                 | Camera test utility            |
+| `run_head_tracking.bat`          | Batch file runner              |
+| `run_head_tracking.ps1`          | PowerShell runner              |
+| `run_head_tracking_improved.bat` | Improved batch file runner     |
+| `stop_head_tracking.bat`         | Script to stop application     |
+| `run_project.py`                 | Alternative Python runner      |
+| `run_project_improved.py`        | Improved Python runner         |
+| `BLINK_DETECTION_README.md`      | Detailed blink detection guide |
+| `requirements.txt`               | Python dependencies            |
+| `README.md`                      | Main documentation             |
+| `LICENSE`                        | MIT License                    |
+| `.gitignore`                     | Ignore unnecessary files       |
+
 
 🔧 Troubleshooting
 Common Issues
 
-Head tracking not working → Check lighting, camera permissions, and make sure webcam is detected.
+| Issue                                    | Possible Fix                                                                  |
+| ---------------------------------------- | ----------------------------------------------------------------------------- |
+| **Head tracking not working**            | Ensure proper lighting, check camera permissions, confirm webcam is detected. |
+| **Blink detection too sensitive**        | Increase `EYE_AR_THRESH` (e.g., `0.25`).                                      |
+| **Blink detection not sensitive enough** | Decrease `EYE_AR_THRESH` (e.g., `0.18`).                                      |
+| **Cursor movement too fast/slow**        | Adjust `yawDegrees` and `pitchDegrees` in the configuration.                  |
+| **Camera feed lagging**                  | Close other applications using the camera to free resources.                  |
 
-Blink detection too sensitive → Increase EYE_AR_THRESH (e.g., 0.25).
-
-Blink detection not sensitive enough → Decrease EYE_AR_THRESH (e.g., 0.18).
-
-Cursor movement too fast/slow → Adjust yawDegrees and pitchDegrees.
-
-Camera feed lagging → Close background apps using the camera.
 
 📊 Technical Details
 Eye Aspect Ratio (EAR)
 
-Uses 6 facial landmarks around each eye for blink detection.
+| Feature/Module              | Description                                                                                                                                                                                                                    |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Blink Detection**         | Uses 6 facial landmarks around each eye for precise blink detection. Compares vertical and horizontal eye distances to determine a blink.                                                                                      |
+| **Head Tracking Algorithm** | Detect facial landmarks using MediaPipe Face Mesh. Extract 3D facial coordinates (yaw, pitch, roll). Map head movement to screen coordinates. Apply smoothing filters to reduce jitter. Control mouse movement with PyAutoGUI. |
 
-Compares vertical eye distance with horizontal eye distance.
-
-Head Tracking Algorithm
-
-Face Mesh detection with MediaPipe
-
-Extract 3D facial landmark coordinates
-
-Map yaw/pitch to screen coordinates
-
-Apply smoothing filters
-
-Control mouse cursor with PyAutoGUI
 
 🛠 Dependencies
 
-opencv-python — video capture and image processing
+| Library           | Purpose                          |
+| ----------------- | -------------------------------- |
+| **opencv-python** | Video capture & image processing |
+| **mediapipe**     | Face mesh detection              |
+| **numpy**         | Mathematical operations          |
+| **pyautogui**     | Mouse control                    |
+| **keyboard**      | Hotkey detection                 |
 
-mediapipe — head and facial landmark detection
-
-numpy — numerical calculations
-
-pyautogui — mouse control
-
-keyboard — hotkey detection
 
 Install all with:
 
 pip install -r requirements.txt
 
-Real-time head tracking using MediaPipe Face Mesh
-
 🤝 Contributing
-
-Fork the repository
-
-Create a new branch:
-
-git checkout -b feature-name
-
-
-Commit your changes:
-
-git commit -m "Add new feature"
-
-
-Push to your fork and create a Pull Request
-
-📝 License
-
-This project is licensed under the MIT License — see the LICENSE file for details.
-
-⚠️ Safety Notes
-
-Take regular breaks to avoid eye strain.
-
-Use in well-lit environments.
-
-Not recommended for prolonged usage without breaks.
-
+| Step | Description / Command                                                           |
+| ---- | ------------------------------------------------------------------------------- |
+| 1    | Fork the repository                                                             |
+| 2    | Create a new branch: <br>`git checkout -b feature-name`                         |
+| 3    | Commit your changes: <br>`git commit -m "Add new feature"`                      |
+| 4    | Push to your fork and create a Pull Request: <br>`git push origin feature-name` |
 
 ---
